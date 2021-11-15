@@ -8,6 +8,8 @@ const Header = () => {
       position={"static"}
       sx={{
         display: "flex",
+        flexWrap: "wrap",
+        rowGap: 2,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
