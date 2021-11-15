@@ -48,6 +48,7 @@ const Converter = () => {
         flexDirection: "column",
         justifyContent: "center",
         height: "100%",
+        py: 10,
       }}
     >
       <Box>
