@@ -4,6 +4,10 @@ export type CurrencyState = {
   base: CurrencyName;
 };
 
-export type CurrencyName = "eur" | "usd" | "rub";
+export enum CurrencyName {
+  RUB = "rub",
+  EUR = "eur",
+  USD = "usd",
+}
 
 export type ChangeBaseCurrency = PayloadAction<CurrencyName>;
