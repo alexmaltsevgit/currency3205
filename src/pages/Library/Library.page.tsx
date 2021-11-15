@@ -11,9 +11,19 @@ const Library = () => {
   const rates = useSelector((state: RootState) => state.currency.rates);
   const dispatch = useDispatch();
 
-  const onBlur = useCallback((e) => {
-    const userCurrency = e.target.value;
-    dispatch(currencyActions.changeBaseCurrency({ name: userCurrency }));
+  const onBlur = useCallback(
+    (e) => {
+      const userCurrency = e.target.value;
+      dispatch(currencyActions.changeBaseCurrency({ name: userCurrency }));
+    },
+    [dispatch]
+  );
+
+  const fixInputMaximumLength = useCallback((e) => {
+    const value = e.target.value;
+    if (value.length > 3) {
+      e.target.value = value.slice(0, 3);
+    }
   }, []);
 
   useEffect(() => {
@@ -38,7 +48,12 @@ const Library = () => {
         }}
       >
         <InputLabel htmlFor={"base-currency"}>Base currency</InputLabel>
-        <Input id={"base-currency"} defaultValue={base} onBlur={onBlur} />
+        <Input
+          id={"base-currency"}
+          defaultValue={base}
+          onBlur={onBlur}
+          onChange={fixInputMaximumLength}
+        />
       </FormControl>
 
       <Grid container spacing={5}>
