@@ -7,7 +7,8 @@ import { CurrencyAPI } from "../../utils/api/currency";
 function* fetchCurrencyRates({ payload: { name } }: ChangeBaseCurrency) {
   try {
     const api = new CurrencyAPI(name);
-    const rates: Rates = yield call(api.getRates.bind(api));
+    let rates: Rates = yield call(api.getRates.bind(api));
+    rates = rates ?? {};
     yield put(currencyActions.changeSuccess({ base: name, rates }));
   } catch (e: any) {
     yield put(currencyActions.changeError({ error: e.message }));
